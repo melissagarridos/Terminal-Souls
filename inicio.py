@@ -6,7 +6,7 @@ from colorama import Fore, Style
 
 
 # Logo
-logo:str = r"""
+logo = ("""
 
 
          ████████╗███████╗██████╗ ███╗   ███╗██╗███╗   ██╗ █████╗ ██╗     
@@ -23,7 +23,7 @@ logo:str = r"""
             ███████║╚██████╔╝╚██████╔╝███████╗███████║
             ╚══════╝ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝
 
-"""
+""")
 
 # Show logo
 print(logo)
@@ -41,11 +41,11 @@ def get_player_name() -> str:
         name (str): A validated name in lowercase.
     """
 
-    valid:bool = False
+    valid = False
     name = ""
 
     while not valid:
-        name: str = input("Please enter your name: ").strip().lower()
+        name = input("Please enter your name: ").strip().capitalize()
 
         if not name:
             print("Name cannot be empty.")

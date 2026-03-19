@@ -1,38 +1,80 @@
 import random
 
 # Stats
-nombre_enemigo = "Dragon 🐉"
 enemigo_hp = 120
+story = ""
 
-# Function generate damage - enemy between 15 and 20
+# Type of enemy according to story
+
+def tipo_enemigo():
+
+    path = False
+
+    while not path:
+
+        print("""Choose your path, Hero:
+              
+            1. Shadow Dungeon: A cold, stone prison.
+            2. Eternal Forest: Where the Werewolves howl.
+            3. Old Graveyard: Resting place of the restless.
+            4. Vampire Castle: The final challenge.    
+        """)
+    
+        try:
+            
+            story = int(input("Select your destination (1-4): "))
+        
+            if story == 1:
+                nombre_enemigo = "Dragon 🐉"
+                path = True
+
+            elif story == 2:
+                nombre_enemigo = "Werewolf 🐺🌕"
+                path = True
+
+            elif story == 3:
+                nombre_enemigo = "Zombie 🧟"
+                path = True
+
+            elif story == 4:
+                nombre_enemigo = "Vampire 🧛"
+                path = True
+
+        except ValueError:
+            print("Choose a valid option")
+            path = False
+
+    print(f"Your enemy: {nombre_enemigo}")
+    return nombre_enemigo
+
+
+# Attacks
+
+ataque_heroe = random.randint(10, 25)
+ataque_enemigo = random.randint(10, 25)
+
+# Function: generate enemy damage between min and max range
 def generar_daño_enemigo(min_damage, max_damage):
+    return random.randint(15, 20)
 
-    return random.randint(min_damage, max_damage)
+# print(f"Enemy's damage: {generar_daño_enemigo()}") 
 
-print(f"Enemy's Damage: {generar_daño_enemigo(15,20)}")
-
-# Calculate and apply hero's damage
+# Function: calculate and apply hero's damage to enemy
 def turno_enemigo(enemigo_hp):
-
-    ataque_heroe = random.randint(10, 25)
     enemigo_hp = enemigo_hp - ataque_heroe
-
     return enemigo_hp
 
-# Function show HP - enemy
+# Function: display current enemy health bar on screen
 def mostrar_estado_enemigo(enemigo_hp):
-
     ancho = 12
     hp_max = 120
     llenos = (enemigo_hp * ancho) // hp_max
     vacio = ancho - llenos
     barra = "[" + "█" * llenos + "░" * vacio + "]"
-
     print(f"Status {nombre_enemigo}: {barra} {enemigo_hp} / 120 HP")
 
-# AI system to heal enemy
+# Function: basic AI - enemy heals if HP drops below 20%
 def aumentar_enemigohp():
-
     global enemigo_hp
 
     if enemigo_hp <= 24:
@@ -40,15 +82,16 @@ def aumentar_enemigohp():
 
         if curarse is True:
             enemigo_hp = enemigo_hp + 20
- 
+            print("Enemy decided to heal! +20 HP")  # <-- print nuevo
+
     return enemigo_hp
 
-# # --- Simulación de turnos ---
-# enemigo_hp = turno_enemigo(enemigo_hp)   # turno 1 — guarda el nuevo HP
-# mostrar_estado_enemigo(enemigo_hp)
+# Function: 10% chance any attack deals double damage (critical hit)
+def daño_critico():
+    local_ataque = ataque_enemigo  # 
 
-# enemigo_hp = aumentar_enemigohp()        # el enemigo intenta curarse
-# mostrar_estado_enemigo(enemigo_hp)
+    if random.random() < 0.1:
+        local_ataque = local_ataque * 2
+        print("Critical hit! Double damage!")  
 
-# enemigo_hp = turno_enemigo(enemigo_hp)   # turno 2 — parte del HP anterior
-# mostrar_estado_enemigo(enemigo_hp)
+    return local_ataque
