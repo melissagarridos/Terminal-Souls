@@ -1,25 +1,28 @@
-import random
+mport random
 
 # Stats
 enemigo_hp = 120
-story = ""
+
 
 # Type of enemy according to story
 
 def tipo_enemigo():
 
+    global nombre_enemigo
+    global escenario
+
+    print("""These are your path options, Hero:
+        
+    1. Shadow Dungeon: A cold, stone prison.
+    2. Eternal Forest: Where the Werewolves howl.
+    3. Old Graveyard: Resting place of the restless.
+    4. Vampire Castle: The path to horror.
+    """)
+
     path = False
 
     while not path:
 
-        print("""These are your path options, Hero:
-              
-            1. Shadow Dungeon: A cold, stone prison.
-            2. Eternal Forest: Where the Werewolves howl.
-            3. Old Graveyard: Resting place of the restless.
-            4. Vampire Castle: The final challenge.    
-        """)
-        
         story = random.random()
 
         if story < 0.2:
@@ -44,8 +47,9 @@ def tipo_enemigo():
 
     return nombre_enemigo, escenario
 
-    
-print(tipo_enemigo())
+nombre_enemigo, escenario = tipo_enemigo()
+
+print(f"Enemy: {nombre_enemigo} Scenario: {escenario}")
 
 
 # Attacks
