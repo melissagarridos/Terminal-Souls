@@ -1,4 +1,4 @@
-mport random
+import random
 
 # Stats
 enemigo_hp = 120
@@ -44,13 +44,10 @@ def tipo_enemigo():
             nombre_enemigo = "Vampire 🧛"
             escenario = "Vampire Castle"
             path = True
-
+    print(f"Enemy: {nombre_enemigo} Scenario: {escenario}")
     return nombre_enemigo, escenario
 
 nombre_enemigo, escenario = tipo_enemigo()
-
-print(f"Enemy: {nombre_enemigo} Scenario: {escenario}")
-
 
 # Attacks
 
@@ -86,7 +83,6 @@ def mostrar_estado_enemigo():
     return estado
     
 
-print(mostrar_estado_enemigo())
 
 # Function: basic AI - enemy heals if HP drops below 20%
 def aumentar_enemigohp():
@@ -103,7 +99,7 @@ def aumentar_enemigohp():
 
 # Function: 10% chance any attack deals double damage (critical hit)
 def daño_critico():
-    local_ataque = ataque_enemigo  # 
+    local_ataque = ataque_enemigo  
 
     if random.random() < 0.1:
         local_ataque = local_ataque * 2
