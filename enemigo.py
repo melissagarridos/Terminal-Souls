@@ -1,108 +1,95 @@
 import random
+from colorama import Fore, Style
 
-# Stats
-enemigo_hp = 120
+# Enemy stats
+enemy_hp = 120
+max_enemy_hp = 120
+enemy_name = ""
+scenario = ""
 
 
-# Type of enemy according to story
+def set_enemy():
+    # Set enemy and scenario based on player choice
+    global enemy_name, scenario
 
-def tipo_enemigo():
+    print("""
+These are your path options, Hero:
 
-    global nombre_enemigo
-    global escenario
-
-    print("""These are your path options, Hero:
-        
     1. Shadow Dungeon: A cold, stone prison.
     2. Eternal Forest: Where the Werewolves howl.
     3. Old Graveyard: Resting place of the restless.
     4. Vampire Castle: The path to horror.
-    """)
+""")
 
-    path = False
+    chosen = False
 
-    while not path:
+    while not chosen:
+        try:
+            story = int(input("Choose your enemy (1-4): ").strip())
 
-        story = random.random()
+            if story == 1:
+                enemy_name = "Dragon 🐉"
+                scenario = "Shadow Dungeon"
+                chosen = True
+            elif story == 2:
+                enemy_name = "Werewolf 🐺🌕"
+                scenario = "Eternal Forest"
+                chosen = True
+            elif story == 3:
+                enemy_name = "Zombie 🧟"
+                scenario = "Old Graveyard"
+                chosen = True
+            elif story == 4:
+                enemy_name = "Vampire 🧛"
+                scenario = "Vampire Castle"
+                chosen = True
+            else:
+                print("  ⚠️  Choose a valid option (1-4).\n")
 
-        if story < 0.2:
-            nombre_enemigo = "Dragon 🐉"
-            escenario = "Special Event! Shadow Dungeon"
-            path = True
+        except ValueError:
+            print("  ⚠️  Please enter a number (1-4).\n")
 
-        elif story < 0.35:
-            nombre_enemigo = "Werewolf 🐺🌕"
-            escenario = "Eternal Forest"
-            path = True
-
-        elif story < 0.65:
-            nombre_enemigo = "Zombie 🧟"
-            escenario = "Old Graveyard"
-            path = True
-
-        else:
-            nombre_enemigo = "Vampire 🧛"
-            escenario = "Vampire Castle"
-            path = True
-    print(f"Enemy: {nombre_enemigo} Scenario: {escenario}")
-    return nombre_enemigo, escenario
-
-nombre_enemigo, escenario = tipo_enemigo()
-
-# Attacks
-
-ataque_heroe = random.randint(10, 25)
-ataque_enemigo = random.randint(10, 25)
-
-# Function: generate enemy damage between min and max range
-def generar_daño_enemigo(min_damage, max_damage):
-    return random.randint(15,25)
+    print(f"\n  Enemy: {enemy_name} | Scenario: {scenario}\n")
 
 
-# print(f"Enemy's damage: {generar_daño_enemigo()}") 
+def show_enemy_status():
+    # Build and return the enemy HP bar
+    global enemy_hp, max_enemy_hp, enemy_name
 
-# Function: calculate and apply hero's damage to enemy
-def turno_enemigo():
-    global enemigo_hp
-    enemigo_hp = enemigo_hp - ataque_heroe
-    return enemigo_hp
+    width = 12
+    filled = max(0, (enemy_hp * width) // max_enemy_hp)
+    empty = width - filled
+    bar = "[" + "█" * filled + "░" * empty + "]"
 
-# Function: display current enemy health bar on screen
-def mostrar_estado_enemigo():
-    global enemigo_hp
-
-    ancho = 12
-    hp_max = 120
-    nombre_enemigo, escenario = tipo_enemigo() 
-    llenos = (enemigo_hp * ancho) // hp_max
-    vacio = ancho - llenos
-    barra = "[" + "█" * llenos + "░" * vacio + "]"
+    if empty >= 9:
+        bar = Fore.RED + bar + Style.RESET_ALL
+    elif empty >= 5:
+        bar = (Fore.YELLOW + bar + Style.RESET_ALL)
+    else:
+        bar = (Fore.GREEN + bar + Style.RESET_ALL)
     
-    estado = f"Status {nombre_enemigo}: {barra} {enemigo_hp} / 120 HP"
-
-    return estado
-    
+    return f"{enemy_name}  {bar} {enemy_hp} / {max_enemy_hp} HP"
 
 
-# Function: basic AI - enemy heals if HP drops below 20%
-def aumentar_enemigohp():
-    global enemigo_hp
+def heal_enemy():
+    # Enemy AI: 50% chance to heal if HP drops to 20% or below
+    global enemy_hp, max_enemy_hp, enemy_name
 
-    if enemigo_hp <= 24:
-        curarse = random.choice([True, False])
+    if enemy_hp <= max_enemy_hp * 0.2:
+        heal = random.choice([True, False])
+        if heal:
+            enemy_hp = min(enemy_hp + 20, max_enemy_hp)
+            print(f"  💉 {enemy_name} decided to heal! +20 HP")
 
-        if curarse is True:
-            enemigo_hp = enemigo_hp + 20
-            print("Enemy decided to heal! +20 HP")  # <-- print nuevo
+    return enemy_hp
 
-    return enemigo_hp
 
-# Function: 10% chance any attack deals double damage (critical hit)
-def daño_critico():
-    local_ataque = ataque_enemigo  
+def critical_hit():
+    # 10% chance to deal double damage
+    base_damage = random.randint(14, 25)
 
     if random.random() < 0.1:
-        local_ataque = local_ataque * 2
-        print("Critical hit! Double damage!")  
+        base_damage = base_damage * 2
+        print("  ⚡ Critical hit! Double damage!")
 
-    return local_ataque
+    return base_damage
