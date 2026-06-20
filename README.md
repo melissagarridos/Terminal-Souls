@@ -1,28 +1,189 @@
-# Terminal-Souls
+<div align="center">
 
-Terminal Souls README
-Terminal Souls is a turn-based battle game with 4 enemy options and one hero. Both Angelica and Melissa developed the code using python with functions and internal python functions such as Random and Colorama.
+# Terminal Souls
 
-What each file does
+### A Turn-Based RPG Combat Engine Built in Python
 
-main.py: This is the main file. It shows the logo, runs the battle loop, handles the hero's actions, and decides who wins. Made by Angelica.
+Battle powerful enemies across multiple environments while managing health, abilities, healing resources, and strategic combat decisions.
 
-enemigo.py — this file handles everything about the enemy: picking which one you fight, showing its HP bar, making it heal itself, and calculating its attacks. Made by Melissa.
+<br>
 
-Who made what
+<a href="https://melissagarridos.github.io/">Portfolio</a> •
+<a href="https://www.linkedin.com/in/melissavgs/">LinkedIn</a> •
+<a href="https://github.com/melissagarridos">GitHub</a>
 
-Melissa (March 19–20, 2025): wrote enemigo.py
+<br><br>
 
-made functions that calculate damage, attacks, and critical hits, and used colorama to create both the logo and health bars. Finally, merged both files together.
+![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge)
+![CLI](https://img.shields.io/badge/Interface-Terminal-green?style=for-the-badge)
+![Game Development](https://img.shields.io/badge/Game-RPG-red?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
 
-Angelica (March 19–20, 2025): wrote the entire main.py file, developed the main motor of the game, using functions for the hero, hits, health system, and menu options.
+</div>
 
-Blockers
+---
 
-Two files with different variables were causing merge conflicts. To fix this, we had to simplify the code and unify variables.
+## Overview
 
-Finally, the game was running.
+Terminal Souls is a turn-based RPG combat game developed in Python that challenges players to battle different enemies across unique environments.
 
-How to play
-First, you pick your enemy from a list of four options. Then the battle starts with a menu that showcases 3 options. After that, you continue to play until one of the players reaches 0 HP.
+Players must manage health, healing resources, and special abilities while facing increasingly dangerous opponents controlled by AI-driven combat behaviors.
 
+The project demonstrates software engineering principles through modular architecture, game state management, and combat system implementation.
+
+---
+
+## Gameplay
+
+Players begin by selecting a battle path:
+
+- Shadow Dungeon
+- Eternal Forest
+- Old Graveyard
+- Vampire Castle
+
+Each location contains a unique enemy:
+
+| Scenario | Enemy |
+|-----------|--------|
+| Shadow Dungeon | Dragon |
+| Eternal Forest | Werewolf |
+| Old Graveyard | Zombie |
+| Vampire Castle | Vampire |
+
+Victory is achieved by reducing the enemy's health to zero before the hero falls.
+
+---
+
+## Core Features
+
+### Combat System
+
+- Turn-based gameplay
+- Standard attacks
+- Special abilities
+- Critical hit mechanics
+
+### Health Management
+
+- Dynamic health bars
+- Health recovery system
+- Potion inventory
+
+### Enemy AI
+
+- Conditional healing behavior
+- Critical hit chance
+- Dynamic combat responses
+
+### User Experience
+
+- Colored terminal interface
+- ASCII game logo
+- Interactive menus
+- Real-time battle feedback
+
+---
+
+## Architecture
+
+```text
+Player Input
+      │
+      ▼
+Combat Engine
+      │
+      ├── Hero Actions
+      │
+      ├── Enemy AI
+      │
+      ├── Damage System
+      │
+      └── Health Management
+      │
+      ▼
+Battle Resolution
+```
+
+---
+
+## Technical Highlights
+
+### Enemy AI
+
+Enemies automatically evaluate their health and may choose to heal when entering critical health ranges.
+
+### Critical Hit System
+
+Both the player and enemies can trigger critical hits that deal double damage.
+
+### State Management
+
+The game maintains and updates:
+
+- Player Health
+- Enemy Health
+- Potion Count
+- Turn Number
+- Scenario State
+
+### Modular Design
+
+Game logic is separated into multiple modules, improving maintainability and readability.
+
+---
+
+## Tech Stack
+
+| Category | Technology |
+|-----------|------------|
+| Language | Python |
+| Terminal UI | Colorama |
+| Architecture | Modular Programming |
+| Logic | Turn-Based Combat System |
+
+---
+
+## Skills Demonstrated
+
+- Python Development
+- Software Architecture
+- State Management
+- Game Logic Design
+- AI Behavior Systems
+- User Interaction Design
+- Modular Programming
+- Error Handling
+
+---
+
+## Future Improvements
+
+- Character Classes
+- Inventory System
+- Equipment Management
+- Experience and Leveling
+- Save / Load Functionality
+- Multiple Enemy Types
+- Boss Battles
+- Story Progression
+- Object-Oriented Refactor
+
+---
+
+## Learning Outcomes
+
+This project strengthened practical experience in:
+
+- Python Programming
+- Software Design
+- Game Mechanics
+- State Management
+- Interactive Applications
+- Modular Code Organization
+
+---
+
+## Project Status
+
+Completed and available for portfolio review.
