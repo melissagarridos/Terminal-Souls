@@ -8,12 +8,6 @@ Battle powerful enemies across multiple environments while managing health, abil
 
 <br>
 
-<a href="https://melissagarridos.github.io/">Portfolio</a> •
-<a href="https://www.linkedin.com/in/melissavgs/">LinkedIn</a> •
-<a href="https://github.com/melissagarridos">GitHub</a>
-
-<br><br>
-
 ![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge)
 ![CLI](https://img.shields.io/badge/Interface-Terminal-green?style=for-the-badge)
 ![Game Development](https://img.shields.io/badge/Game-RPG-red?style=for-the-badge)
